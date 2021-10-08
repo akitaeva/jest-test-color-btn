@@ -21,7 +21,7 @@ test('button is enabled and checkbox is unchecked', () => {
   // check the button starts enabled
   expect(btn).toBeEnabled();
   // check that the checkbox starts out unchecked
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox', {name: 'Disable button'});
   expect(checkbox).not.toBeChecked();
   // check the checkbox, assert that the button is disabled
   fireEvent.click(checkbox);
