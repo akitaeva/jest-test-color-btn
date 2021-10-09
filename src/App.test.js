@@ -30,3 +30,16 @@ test('button is enabled and checkbox is unchecked', () => {
   fireEvent.click(checkbox);
   expect(btn).toBeEnabled();
 });
+
+test('disabled button has grey bg and reverts to red', () => {
+  render(<App />);
+  const btn = screen.getByRole('button', {name: 'Change to blue'});
+  const checkbox = screen.getByRole('checkbox', {name: 'Disable button'});
+  
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: 'gray'});
+
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: 'red'});
+});
+

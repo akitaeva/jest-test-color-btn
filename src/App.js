@@ -22,7 +22,7 @@ const App = () => {
         aria-checked={disabled}
       />
       <button
-        style={{ backgroundColor: btnColor }}
+        style={{ backgroundColor: disabled ? 'gray' : btnColor }}
         onClick={() => changeTextAndColor()}
         disabled={disabled}
       >
