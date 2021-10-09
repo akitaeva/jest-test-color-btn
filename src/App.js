@@ -7,8 +7,8 @@ export const splitCamelWithSpace = ( colorName ) => {
 
 const App = () => {
   const [disabled, setDisabled] = useState(false);
-  const [btnColor, setBtnColor] = useState("red");
-  const newBtnColor = btnColor === "red" ? "blue" : "red";
+  const [btnColor, setBtnColor] = useState("MediumVioletRed");
+  const newBtnColor = btnColor === "MediumVioletRed" ? "MidnightBlue" : "MediumVioletRed";
 
   const changeTextAndColor = () => {
     setBtnColor(newBtnColor);
@@ -29,7 +29,7 @@ const App = () => {
         onClick={() => changeTextAndColor()}
         disabled={disabled}
       >
-        Change to {newBtnColor}
+        Change to {splitCamelWithSpace(newBtnColor)}
       </button>
     </div>
   );
