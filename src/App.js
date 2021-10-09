@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
 
+export const splitCamelWithSpace = ( colorName ) => {
+  return colorName.replace(/\B([A-Z])\B/g, ' $1');
+};
+
 const App = () => {
   const [disabled, setDisabled] = useState(false);
   const [btnColor, setBtnColor] = useState("red");
   const newBtnColor = btnColor === "red" ? "blue" : "red";
- 
 
   const changeTextAndColor = () => {
     setBtnColor(newBtnColor);

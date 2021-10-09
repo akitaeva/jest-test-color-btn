@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
+import App, { splitCamelWithSpace } from './App';
 
 test('button has the correct colors and text', () => {
   render(<App />);
@@ -31,7 +31,7 @@ test('button is enabled and checkbox is unchecked', () => {
   expect(btn).toBeEnabled();
 });
 
-test('disabled button has grey bg and reverts to red', () => {
+test('disabled button has gray bg and reverts to red', () => {
   render(<App />);
   const btn = screen.getByRole('button', {name: 'Change to blue'});
   const checkbox = screen.getByRole('checkbox', {name: 'Disable button'});
@@ -43,3 +43,28 @@ test('disabled button has grey bg and reverts to red', () => {
   expect(btn).toHaveStyle({ backgroundColor: 'red'});
 });
 
+test('clicked disabled button has grey bg and reverts to blue', () => {
+  render(<App />);
+  const btn = screen.getByRole('button', {name: 'Change to blue'});
+  const checkbox = screen.getByRole('checkbox', {name: 'Disable button'});
+  
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: 'gray'});
+
+  fireEvent.click(checkbox);
+  expect(btn).toHaveStyle({ backgroundColor: 'red'});
+});
+
+describe('has spaces before camel-case capital letters', ()=> {
+  test('Works for no inner capital letters', () => {
+    expect(splitCamelWithSpace('Red')).toBe('Red');
+  });
+
+  test('Works for one capital letter', () => {
+    expect(splitCamelWithSpace('MidnightBlue')).toBe('Midnight Blue');
+  });
+
+  test('Works for multiple capital letters', ()=> {
+    expect(splitCamelWithSpace('MediumVioletRed')).toBe('Medium Violet Red');
+  });
+})
